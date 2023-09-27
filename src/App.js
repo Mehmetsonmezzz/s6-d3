@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
-
+import Images from "./Images/Images";
 function App() {
   const [data, setData] = useState("");
   const api = "IYBU0pBFuMtzU9WT5k5fl2eMSQpF5pqkLa2lgF0k";
-
   useEffect(() => {
     axios
       .get("https://api.nasa.gov/planetary/apod?api_key=" + api)
@@ -16,15 +15,11 @@ function App() {
         // handle error
         console.log(error);
       });
-  });
+  }, []);
 
   return (
     <div className="App">
-      <h1>Nasa Günün Fotoğrafı</h1>
-      <img src={data.url} alt={data.title} />
-      <h2>{data.title}</h2>
-      <p>{data.explanation}</p>
-      <p>Date: {data.date}</p>
+      <Images viewData={data} />
     </div>
   );
 }
